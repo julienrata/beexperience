@@ -1,0 +1,95 @@
+<nav class="flex items-center justify-center" aria-label="Pagination">
+  <ul class="inline-flex -space-x-px" [ngClass]="sizeClass">
+    <!-- Previous Button -->
+    <li>
+      <button 
+        type="button"
+        class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+        [ngClass]="{'opacity-50 cursor-not-allowed': currentPage === 1 || disabled }"
+        [disabled]="currentPage === 1 || disabled"
+        (click)="changePage(currentPage - 1)"
+        aria-label="Previous page"
+      >
+        <span class="sr-only">Previous</span>
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </li>
+    
+    <!-- First Page Button (optional) -->
+    @if (showFirstLast && currentPage > 2 && totalPages > 3) {
+      <li>
+        <button 
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          [ngClass]="{'opacity-50 cursor-not-allowed': disabled, 'bg-indigo-50 text-indigo-600': currentPage === 1}"
+          [disabled]="disabled"
+          (click)="changePage(1)"
+        >
+          1
+        </button>
+      </li>
+    }
+    
+    <!-- Page Numbers -->
+    @if (showPageNumbers) {
+      @for (page of pages; track page) {
+        <li>
+          @if (isEllipsis(page)) {
+            <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-gray-700">
+              ...
+            </span>
+          } @else {
+            <button 
+              type="button"
+              class="relative inline-flex items-center px-4 py-2 border border-gray-300 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+              [ngClass]="{
+                'bg-indigo-50 text-indigo-600 border-indigo-500 z-10': currentPage === page,
+                'bg-white text-gray-700 hover:bg-gray-50': currentPage !== page,
+                'opacity-50 cursor-not-allowed': disabled
+              }"
+              [disabled]="disabled"
+              (click)="changePage(page)"
+              [attr.aria-current]="currentPage === page ? 'page' : null"
+            >
+              {{ page }}
+            </button>
+          }
+        </li>
+      }
+    }
+    
+    <!-- Last Page Button (optional) -->
+    @if (showFirstLast && currentPage < totalPages - 1 && totalPages > 3) {
+      <li>
+        <button 
+          type="button"
+          class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+          [ngClass]="{'opacity-50 cursor-not-allowed': disabled, 'bg-indigo-50 text-indigo-600': currentPage === totalPages}"
+          [disabled]="disabled"
+          (click)="changePage(totalPages)"
+        >
+          {{ totalPages }}
+        </button>
+      </li>
+    }
+    
+    <!-- Next Button -->
+    <li>
+      <button 
+        type="button"
+        class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+        [ngClass]="{'opacity-50 cursor-not-allowed': currentPage === totalPages || disabled }"
+        [disabled]="currentPage === totalPages || disabled"
+        (click)="changePage(currentPage + 1)"
+        aria-label="Next page"
+      >
+        <span class="sr-only">Next</span>
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </li>
+  </ul>
+</nav>
