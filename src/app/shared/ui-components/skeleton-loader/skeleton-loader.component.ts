@@ -6,7 +6,7 @@ export type SkeletonType = 'text' | 'circle' | 'rectangle' | 'card' | 'table' | 
 @Component({
   selector: 'app-skeleton-loader',
   standalone: true,
-  imports: [NgClass, NgFor, NgIf, NgStyle],
+  imports: [NgClass, NgStyle],
   templateUrl: './skeleton-loader.component.html',
   styleUrl: './skeleton-loader.component.css'
 })

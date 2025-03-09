@@ -6,7 +6,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, NgIf],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.css'
 })
