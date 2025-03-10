@@ -1,0 +1,34 @@
+{
+  "name": "@beexperience/services",
+  "version": "1.0.0",
+  "description": "Shared services for BeExperience applications",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "services",
+    "typescript",
+    "blog"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "rxjs": "~7.8.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "typescript": "~5.1.6",
+    "rxjs": "~7.8.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "rxjs": "~7.8.0"
+  }
+}

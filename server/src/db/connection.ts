@@ -35,10 +35,12 @@ class DatabaseConnection {
       
       await mongoose.connect(mongoUri);
       
+      // eslint-disable-next-line no-console
       console.log(`MongoDB Connected: ${mongoose.connection.host}`);
       return mongoose.connection;
     } catch (error) {
       const err = error as Error;
+      // eslint-disable-next-line no-console
       console.error(`Error connecting to MongoDB: ${err.message}`);
       process.exit(1);
     }
@@ -50,9 +52,11 @@ class DatabaseConnection {
   public async disconnect(): Promise<void> {
     try {
       await mongoose.disconnect();
+      // eslint-disable-next-line no-console
       console.log('MongoDB disconnected');
     } catch (error) {
       const err = error as Error;
+      // eslint-disable-next-line no-console
       console.error(`Error disconnecting from MongoDB: ${err.message}`);
     }
   }

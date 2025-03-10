@@ -1,4 +1,4 @@
-import { IUser } from "../models/User";
+import { IUser } from '../models/User';
 
 /**
  * User Data Transfer Object
@@ -53,7 +53,7 @@ export class UserDtoMapper {
       isActive: user.isActive,
       lastLogin: user.lastLogin,
       createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      updatedAt: user.updatedAt,
     };
   }
 
@@ -61,7 +61,7 @@ export class UserDtoMapper {
    * Map multiple user entities to user DTOs
    */
   public static toDtoList(users: IUser[]): UserDto[] {
-    return users.map(user => this.toDto(user));
+    return users.map((user) => this.toDto(user));
   }
 
   /**
@@ -73,7 +73,7 @@ export class UserDtoMapper {
       email: dto.email,
       password: dto.password, // Note: password should be hashed before storage
       role: dto.role,
-      isActive: dto.isActive !== undefined ? dto.isActive : true
+      isActive: dto.isActive !== undefined ? dto.isActive : true,
     };
   }
 }

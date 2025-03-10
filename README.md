@@ -1,59 +1,105 @@
-# Beexperience
+# BeExperience - Multi-Repo Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+This project has been refactored into a multi-repo structure with separated client, admin, and shared libraries. All applications are built with Angular 19.
 
-## Development server
+## Project Structure
 
-To start a local development server, run:
+This project is organized into three main components:
 
-```bash
-ng serve
-```
+1. **Client App** (`/client-app`)
+   - Client-facing blog application
+   - Features: Blog posts, tag filtering, responsive design
+   
+2. **Admin App** (`/admin-app`)
+   - Administrative interface for content management
+   - Features: Dashboard, blog and tag management, styleguide
+   
+3. **Shared Libraries** (`/shared-libs`)
+   - `@beexperience/models`: Shared data models and interfaces
+   - `@beexperience/services`: Shared services for blog operations
+   - `@beexperience/ui-components`: Shared UI components with styleguide
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Technology Stack
 
-## Code scaffolding
+- **Frontend**: Angular 19
+- **Styling**: Tailwind CSS 
+- **Backend**: Node.js/Express
+- **Database**: MongoDB (through Mongoose)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting Started
 
-```bash
-ng generate component component-name
-```
+Each application can be run independently:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Running the Client App
 
 ```bash
-ng test
+cd client-app
+npm install
+npm start
 ```
 
-## Running end-to-end tests
+App will be available at http://localhost:4200
 
-For end-to-end (e2e) testing, run:
+### Running the Admin App
 
 ```bash
-ng e2e
+cd admin-app
+npm install
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+App will be available at http://localhost:4201
 
-## Additional Resources
+### Building Shared Libraries
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+# Build models library
+cd shared-libs/models
+npm install
+npm run build
+
+# Build services library
+cd ../services
+npm install
+npm run build
+
+# Build UI components library
+cd ../ui-components
+npm install
+npm run build
+```
+
+## API Server
+
+The backend API is located in the `/server` directory and can be run with:
+
+```bash
+cd server
+npm install
+npm start
+```
+
+## Component Library
+
+The shared UI components library (`@beexperience/ui-components`) provides consistent UI elements across all applications:
+
+- Button: Various styles and sizes of buttons
+- Card: Content containers with header and footer options
+- Input: Form input elements with validation support
+- Select: Dropdown menus with options
+- Badge: Status indicators
+- Modal: Dialog windows
+
+For detailed documentation, see the [UI Components README](./shared-libs/ui-components/README.md).
+
+## Deployment
+
+Each application can be deployed independently to different environments.
+
+## Further Information
+
+See the README.md files in each application directory for more specific information:
+
+- [Client App README](./client-app/README.md)
+- [Admin App README](./admin-app/README.md)
+- [Shared Libraries README](./shared-libs/README.md)

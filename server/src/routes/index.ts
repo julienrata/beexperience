@@ -1,5 +1,6 @@
 import express from 'express';
 import userRoutes from './user.routes';
+import blogRoutes from './blog.routes';
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.get('/', (req, res) => {
 
 // Mount route groups
 router.use('/users', userRoutes);
+router.use('/blog', blogRoutes);
 
 export default router;

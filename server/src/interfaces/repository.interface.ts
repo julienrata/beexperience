@@ -1,4 +1,21 @@
 /**
+ * Type for supported filter values in queries
+ */
+export type FilterValue = string | number | boolean | Date | RegExp | Array<string | number> | Record<string, unknown> | null;
+
+/**
+ * Type for query options like pagination, sorting, etc.
+ */
+export interface QueryOptions {
+  limit?: number;
+  skip?: number;
+  page?: number;
+  sort?: Record<string, 1 | -1> | string;
+  select?: string[] | string;
+  populate?: string[] | string | Record<string, unknown>;
+}
+
+/**
  * Generic Repository Interface
  * Defines standard CRUD operations following the Repository Pattern
  */
@@ -8,7 +25,7 @@ export interface IRepository<T> {
    * @param filter Optional filter criteria
    * @param options Optional query options (pagination, sort)
    */
-  findAll(filter?: Record<string, any>, options?: Record<string, any>): Promise<T[]>;
+  findAll(filter?: Record<string, FilterValue>, options?: QueryOptions): Promise<T[]>;
 
   /**
    * Find one entity by id
@@ -20,7 +37,7 @@ export interface IRepository<T> {
    * Find one entity by criteria
    * @param criteria Search criteria
    */
-  findOne(criteria: Record<string, any>): Promise<T | null>;
+  findOne(criteria: Record<string, FilterValue>): Promise<T | null>;
 
   /**
    * Create new entity
@@ -45,5 +62,5 @@ export interface IRepository<T> {
    * Count entities by filter
    * @param filter Filter criteria
    */
-  count(filter?: Record<string, any>): Promise<number>;
+  count(filter?: Record<string, FilterValue>): Promise<number>;
 }

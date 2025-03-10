@@ -1,5 +1,5 @@
 import { IService } from '../interfaces/service.interface';
-import { IRepository } from '../interfaces/repository.interface';
+import { FilterValue, IRepository } from '../interfaces/repository.interface';
 import { IUser } from '../models/User';
 import { AppError } from '../utils/errors/AppError';
 import { PaginatedResult } from '../types/common';
@@ -35,19 +35,23 @@ export class UserService implements IService<UserDto, UserQuery> {
     // Parse query parameters
     const page = parseInt(String(query.page), 10) || 1;
     const limit = parseInt(String(query.limit), 10) || 10;
-    const filter: Record<string, any> = {};
+    const filter: Record<string, unknown> = {};
     
     // Apply filters if provided
     if (query.name) filter.name = { $regex: query.name, $options: 'i' };
     if (query.email) filter.email = { $regex: query.email, $options: 'i' };
     if (query.role) filter.role = query.role;
     if (query.isActive !== undefined) {
-      filter.isActive = query.isActive === true || query.isActive === 'true';
+      // Convert string 'true'/'false' to boolean if needed
+      const isActive = typeof query.isActive === 'string' 
+        ? query.isActive === 'true'
+        : Boolean(query.isActive);
+      filter.isActive = isActive;
     }
 
     // Get users with pagination
-    const users = await this.userRepository.findAll(filter, { page, limit });
-    const count = await this.userRepository.count(filter);
+    const users = await this.userRepository.findAll(filter as Record<string, FilterValue>, { page, limit });
+    const count = await this.userRepository.count(filter as Record<string, FilterValue>);
 
     // Calculate pagination metadata
     const totalPages = Math.ceil(count / limit);

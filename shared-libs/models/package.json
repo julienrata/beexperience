@@ -1,0 +1,21 @@
+{
+  "name": "@beexperience/models",
+  "version": "1.0.0",
+  "description": "Shared models for BeExperience applications",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "models",
+    "typescript",
+    "blog"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "~5.1.6"
+  }
+}

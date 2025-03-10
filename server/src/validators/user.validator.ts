@@ -31,7 +31,7 @@ export const validateCreateUser = (req: Request, res: Response, next: NextFuncti
  * Validate user update request
  */
 export const validateUpdateUser = (req: Request, res: Response, next: NextFunction): void => {
-  const { name, email, password, role } = req.body;
+  const { email, password, role } = req.body;
   const errors: string[] = [];
 
   // Only validate fields that are present
